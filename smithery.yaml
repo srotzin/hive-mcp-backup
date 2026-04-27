@@ -1,0 +1,155 @@
+# Smithery Registry — hive-mcp-backup
+# https://smithery.ai
+
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  url: https://hive-mcp-backup.onrender.com/mcp
+
+name: hive-mcp-backup
+displayName: hive-mcp-backup — Snapshot and backup
+version: "1.0.0"
+description: >
+  Snapshot and backup service for the A2A network. Stores agent payloads up
+  to 10 MB per object as content-addressed blobs with SHA-256 integrity,
+  exposes a point-in-time list, and meters access through x402 at
+  $0.01 per GB-month of storage and $0.05 per restore. Inbound only.
+
+author:
+  name: Steve Rotzin
+  email: steve@thehiveryiq.com
+  url: https://www.thehiveryiq.com
+
+license: MIT
+homepage: https://github.com/srotzin/hive-mcp-backup
+repository:
+  type: git
+  url: https://github.com/srotzin/hive-mcp-backup
+
+transport: streamable-http
+endpoint: https://hive-mcp-backup.onrender.com/mcp
+protocol: "2024-11-05"
+
+categories:
+  - infrastructure
+  - agent-to-agent
+  - storage
+  - backup
+
+tags:
+  - mcp
+  - hive
+  - backup
+  - snapshot
+  - restore
+  - sha256
+  - x402
+  - 402
+  - sqlite
+  - ai-agents
+  - a2a
+  - usdc
+  - base-l2
+
+tools:
+  - name: backup_create
+    description: >
+      Create a snapshot. Body may be a string, JSON value, or
+      { base64: string } for binary up to 10 MB. Returns the snapshot id,
+      SHA-256 digest, and size.
+    inputs:
+      - name: agent_did
+        type: string
+        required: true
+        description: "Stable agent identifier; storage is grouped and billed by this value."
+      - name: name
+        type: string
+        required: true
+        description: "Human-readable label for the snapshot."
+      - name: body
+        type: any
+        required: true
+        description: "Snapshot content."
+      - name: content_type
+        type: string
+        required: false
+      - name: metadata
+        type: object
+        required: false
+  - name: backup_list
+    description: >
+      List snapshots filtered by agent_did and a created_at window.
+      Returns id, name, sha256, size_bytes, and created_at. Free.
+    inputs:
+      - name: agent_did
+        type: string
+        required: false
+      - name: since
+        type: integer
+        required: false
+        description: "Lower bound on created_at, in epoch seconds."
+      - name: until
+        type: integer
+        required: false
+        description: "Upper bound on created_at, in epoch seconds."
+      - name: limit
+        type: integer
+        required: false
+      - name: offset
+        type: integer
+        required: false
+  - name: backup_restore
+    description: >
+      Restore a snapshot by id. Verifies the SHA-256 digest before
+      returning the body. $0.05 per restore via x402.
+    inputs:
+      - name: id
+        type: string
+        required: true
+      - name: verify_only
+        type: boolean
+        required: false
+
+runtime:
+  type: node
+  version: ">=18"
+  command: node server.js
+  env:
+    - name: PORT
+      default: "3000"
+      required: false
+    - name: ENABLE
+      default: "true"
+      required: false
+    - name: WALLET_ADDRESS
+      default: "0x15184bf50b3d3f52b60434f8942b7d52f2eb436e"
+      required: false
+    - name: BACKUP_PRICE_PER_GB_MONTH_USD
+      default: "0.01"
+      required: false
+    - name: BACKUP_PRICE_PER_RESTORE_USD
+      default: "0.05"
+      required: false
+    - name: BACKUP_PREPAY_BUNDLE_USD
+      default: "1.0"
+      required: false
+    - name: BACKUP_MAX_OBJECT_BYTES
+      default: "10485760"
+      required: false
+    - name: BACKUP_DB_PATH
+      default: "/tmp/backup.db"
+      required: false
+    - name: BACKUP_BLOB_DIR
+      default: "/tmp/backup_blobs"
+      required: false
+
+brand:
+  color: "#C08D23"
+  name: "Hive Civilization gold (Pantone 1245 C)"
+
+policy:
+  inbound_only: true
+  default_enable: true

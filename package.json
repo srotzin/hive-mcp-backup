@@ -1,0 +1,44 @@
+{
+  "name": "hive-mcp-backup",
+  "version": "1.0.0",
+  "description": "Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only.",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "hive-mcp-backup": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mcp",
+    "hive",
+    "backup",
+    "snapshot",
+    "restore",
+    "sha256",
+    "x402",
+    "402",
+    "sqlite",
+    "ai-agents",
+    "a2a",
+    "usdc",
+    "base-l2"
+  ],
+  "author": "Steve Rotzin <steve@thehiveryiq.com> (https://www.thehiveryiq.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/srotzin/hive-mcp-backup",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srotzin/hive-mcp-backup"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ethers": "^6.13.2",
+    "better-sqlite3": "^11.3.0"
+  }
+}
