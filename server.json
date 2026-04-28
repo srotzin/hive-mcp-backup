@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.srotzin/hive-mcp-backup",
+  "title": "Hive Backup",
+  "description": "Snapshot and restore service for agent state and DID-bound configuration",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.hiveagentiq.com",
+  "remotes": [
+    {
+      "url": "https://hive-mcp-backup.onrender.com/mcp",
+      "type": "streamable-http"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/srotzin/hive-mcp-backup",
+    "source": "github"
+  }
+}
