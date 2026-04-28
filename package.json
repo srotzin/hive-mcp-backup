@@ -34,7 +34,7 @@
     "url": "https://github.com/srotzin/hive-mcp-backup"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "express": "^4.19.2",
