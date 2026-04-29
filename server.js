@@ -671,6 +671,11 @@ function parseMultipart(req) {
 }
 
 
+// ─── Schema constants (auto-injected to fix deploy) ─────
+const SERVICE = 'hive-mcp-backup';
+const VERSION = '1.0.0';
+
+
 // ─── Schema discoverability ────────────────────────────────────────────────
 const AGENT_CARD = {
   name: SERVICE,
