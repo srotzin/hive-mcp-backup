@@ -548,7 +548,7 @@ function parseMultipart(req) {
 // ─── Schema discoverability ────────────────────────────────────────────────
 const AGENT_CARD = {
   name: SERVICE,
-  description: `Snapshot and backup service for the A2A network. SHA-256 integrity checksums, point-in-time list, $0.01 per GB-month storage and $0.05 per restore via x402.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.`,
+  description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
   url: `https://${SERVICE}.onrender.com`,
   provider: {
     organization: 'Hive Civilization',
@@ -573,7 +573,11 @@ const AGENT_CARD = {
   },
   defaultInputModes: ['application/json'],
   defaultOutputModes: ['application/json'],
-  skills: TOOLS.map(t => ({ name: t.name, description: t.description })),
+  skills: [
+    { name: 'backup_create', description: 'Create a snapshot. Body may be a string, JSON value, or { base64: string } for binary up to 10 MB. Returns the snapshot id, SHA-256 digest, and size. Tier 0; storage is metered nightly at $0.01 per GB-month via x402.' },
+    { name: 'backup_list', description: 'List snapshots, optionally filtered by agent_did and a created_at window. Returns a point-in-time view with id, name, sha256, size_bytes, and created_at. Free.' },
+    { name: 'backup_restore', description: 'Restore a snapshot by id. Verifies the SHA-256 digest before returning the body. Tier 2; $0.05 per restore via x402. Inbound only.' },
+  ],
   extensions: {
     hive_pricing: {
       currency: 'USDC',
@@ -591,7 +595,7 @@ const AP2 = {
   agent: {
     name: SERVICE,
     did: `did:web:${SERVICE}.onrender.com`,
-    description: `Snapshot and backup service for the A2A network. SHA-256 integrity checksums, point-in-time list, $0.01 per GB-month storage and $0.05 per restore via x402.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.`,
+    description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
   },
   endpoints: {
     mcp: `https://${SERVICE}.onrender.com/mcp`,
@@ -611,7 +615,7 @@ const AP2 = {
 };
 
 app.get('/.well-known/agent-card.json', (req, res) => res.json(AGENT_CARD));
-app.get('/.well-known/ap2.json', (req, res) => res.json(AP2));
+app.get('/.well-known/ap2.json',         (req, res) => res.json(AP2));
 
 
 // ─── Boot ──────────────────────────────────────────────────────────────────
