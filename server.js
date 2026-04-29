@@ -548,7 +548,7 @@ function parseMultipart(req) {
 // ─── Schema discoverability ────────────────────────────────────────────────
 const AGENT_CARD = {
   name: SERVICE,
-  description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
+  description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
   url: `https://${SERVICE}.onrender.com`,
   provider: {
     organization: 'Hive Civilization',
@@ -595,7 +595,7 @@ const AP2 = {
   agent: {
     name: SERVICE,
     did: `did:web:${SERVICE}.onrender.com`,
-    description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only.. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
+    description: 'Snapshot and backup service for the A2A network. SHA-256 integrity, point-in-time list, $0.01/GB-month storage and $0.05/restore via x402. Hive Civilization. Inbound only. New agents: first call free. Loyalty: every 6th paid call is free. Pay in USDC on Base L2.',
   },
   endpoints: {
     mcp: `https://${SERVICE}.onrender.com/mcp`,
