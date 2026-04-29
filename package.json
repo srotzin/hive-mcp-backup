@@ -34,11 +34,11 @@
     "url": "https://github.com/srotzin/hive-mcp-backup"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": "22.x"
   },
   "dependencies": {
     "express": "^4.19.2",
     "ethers": "^6.13.2",
-    "better-sqlite3": "^11.3.0"
+    "better-sqlite3": "^12.9.0"
   }
 }
