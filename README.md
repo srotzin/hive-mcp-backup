@@ -1,5 +1,7 @@
 # hive-mcp-backup
 
+[![srotzin/hive-mcp-backup MCP server](https://glama.ai/mcp/servers/srotzin/hive-mcp-backup/badges/score.svg)](https://glama.ai/mcp/servers/srotzin/hive-mcp-backup)
+
 Snapshot and backup service for the A2A network. Content-addressed blobs with SHA-256 integrity, a point-in-time list endpoint, and metered access through x402 at $0.01 per GB-month of storage and $0.05 per restore. Inbound only.
 
 Hive Civilization. Brand gold `#C08D23` (Pantone 1245 C).
